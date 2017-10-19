@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body class="closetbackground" background="static/img/cupboard.png"> 
+
+  <br>
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- <h1>Your outfit for <i>{{ activity }}</i>:</h1><br> -->
+  
+  <br>
+
+<div class="container-fluid outfits">
+  <div class="col-md-5">
+    <div>
+    <img id="accessory" class="accessories" src="{{ accessory }}" style="display: none;">
+      <button class="btn" id="addaccessory">Add Accessory 👓</button> 
+    </div>  
+    <br>
+    <div>
+      <img id="shoe" class="shoes" src="{{ shoe }}" style="display: none;">
+      <button class="btn" id="addshoes">Add Shoes 👠</button>
+    </div>
+    <br>
+    <div>
+      <button class="btn" data-url="{{ top }}" id="favoriteoutfit">Favorite This Outfit ⭐️</button>
+    </div>
+    <br>
+    <div>
+      <button class="btn" data-url="{{ top }}" id="weartoday">Wear Today!</button>
+    </div> 
+    <br>
+    <div>
+      <button id="addjacket" class="btn">Add Jacket</button>
+    </div>
+  </div>
+  <div class="col-md-4">
+      <div class="closetclothes">
+        {% if top == None %}
+        You don't have any tops for this occasion!
+        {% else %}
+        <img id="tops" class="top" src="{{ top }}">
+        {% endif %}
+        <button class="btn" id="changetop">Next</button> 
+      </div>
+      <div class="closetclothes">
+        <img id="bottoms" class="bottom" src="{{ bottom }}">
+        <button class="btn" id="changebottom">Next</button> 
+      </div> 
+      <div>
+      <a href="/outfit">Make another outfit for another activity</a><br>
+      </div>
+  </div> 
+    <div>
+    <img id="jacket" class="jackets" src="{{ jacket }}" style="display: none;">
+  </div>
+  <div class="col-md-2 col-md-offset-1"> 
+  <div>
+    <h4>The weather is {{ temp }}℉. <br><br>
+    {% if temp < 65 %}
+      It's cold out. You're probably going to want a jacket.
+    {% else %}
+      It's warm out! You don't need a jacket today.
+    {% endif %}</h4>
+    </div>
+  </div>
+<script>
+  var temp = {{ temp }}
+
+  if (temp < 65){
+    document.getElementById('addjacket').style.visibility="visible";
+  }
+  else{
+    document.getElementById('addjacket').style.visibility="hidden";
+  }
+  //add jacket button will show a random jacket to add to outfit
+  var jacketbutton = document.getElementById('addjacket');
+  function addJacket(){
+    document.getElementById('jacket').style.display="inline";
+  }
+  jacketbutton.addEventListener('click', addJacket);
+
+  //adding shoes after clicking the button
+  var shoebutton = document.getElementById('addshoes');
+  function addShoes(){
+    $('#shoe').toggle();
+  }
+  shoebutton.addEventListener('click', addShoes);
+  //changing shoe button text
+  $(function(){
+    $("#addshoes").click(function (){
+      $(this).text(function(i, text){
+        return text == "Add Shoes 👠" ? "No Shoes 👠" : "Add Shoes 👠";
+      })
+    });
+  })
+
+  //adding an accessory after clicking the button
+  var accessorybutton = document.getElementById('addaccessory');
+  function addAccessory(){
+    $('#accessory').toggle();
+  }
+  accessorybutton.addEventListener('click', addAccessory);
+  //changing the text on the button after clicking
+  $(function(){
+    $("#addaccessory").click(function (){
+      $(this).text(function(i, text){
+        return text == "Add Accessory 👓" ? "No Accessory 👓" : "Add Accessory 👓";
+      })
+    });
+  })
+
+  //clicking next button will choose another random top
+  var topsbutton = document.getElementById('changetop');
+  topsbutton.addEventListener('click', ()=>{
+    // MAKE AJAX CALL TO GET URL OF BOTTOM FOR ACTIVITY
+    $.get('/get_random_article/{{activity}}/tops', function(data, status) {
+      console.log('data',data);
+      // GET THE URL FROM RESPONSE
+      var url = data;
+      // SET THE SOURCE FOR THE BOTTOMS IMAGE BE THE URL RETURNEDJUST NOW
+      $('#tops').attr('src', url);
+    });
+  });
+
+  //clicking next button will choose another random bottom
+  var bottomsbutton = document.getElementById('changebottom');
+  bottomsbutton.addEventListener('click', ()=>{
+    // MAKE AJAX CALL TO GET URL OF BOTTOM FOR ACTIVITY
+    $.get('/get_random_article/{{activity}}/bottoms', function(data, status) {
+      console.log('data',data);
+      // GET THE URL FROM RESPONSE
+      var url = data;
+      // SET THE SOURCE FOR THE BOTTOMS IMAGE BE THE URL RETURNEDJUST NOW
+      $('#bottoms').attr('src', url);
+    });
+  });
+
+  var tops = {{ top|tojson|safe }};
+  if (tops !== null){
+    var cat_id = tops[1];
+  }
+  if (cat_id == 'dresses'){
+    document.getElementById('bottoms').style.visibility="hidden";
+    document.getElementById('backbottom').style.visibility="hidden";
+    document.getElementById('changebottom').style.visibility="hidden";
+  }
+  else{
+    document.getElementById('bottoms').style.visibility="visible";
+  }
+  
+
+
+//////////////////////adding outfit to favorites///////////////////
+
+$(function() {
+    $("#favoriteoutfit").click(function() {
+        var urls = {'top': "{{ top }}",
+          'bottom': "{{ bottom }}",
+          'activity': "{{ activity }}"}
+        var data = JSON.stringify(urls)
+          console.log(data)
+            $.ajax({
+                type: "POST",
+                url: "/add_favorites",
+                data: data,
+                dataType: "json",
+                contentType: "application/json"
+                // success : function(data) {console.log(data)} - need to write function to make image disappear
+            });
+    });
+});
+
+
+$(function() {
+    $("#weartoday").click(function() {
+        var check = {'top': "{{ top }}",
+          'bottom': "{{ bottom }}",
+          'activity': "{{ activity }}"}
+        var datas = JSON.stringify(check)
+          console.log(datas)
+            $.ajax({
+                type: "POST",
+                url: "/add_history",
+                data: datas,
+                dataType: "json",
+                contentType: "application/json"
+                // success : function(data) {console.log(data)} - need to write function to make image disappear
+            });
+    });
+});
+</script>
+
+
+<br>
+<br>
+
+
+<br>
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body class="formbackground" background="static/img/concrete-texture.png">
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>Calendar 2017</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="date.created" content="2017-05-24">
+<meta name="generator" content="HTML Calendar Maker 2.0">
+<meta name="licensekey" content="">
+
+</head>
+<body>
+<div class="pastoutfit">
+  <div class="pastoutfittop outfitpopuptext" id="myTopPopup">
+  </div>
+  <div class="pastoutfitbottom outfitpopuptext" id="myTopPopup">
+  </div>
+</div>  
+  <div class="title">May 2017</div>
+  <table data-month="2017-05-" border="1">
+    <tr>
+      <th>Sun</th>
+      <th>Mon</th>
+      <th>Tue</th>
+      <th>Wed</th>
+      <th>Thu</th>
+      <th>Fri</th>
+      <th>Sat</th>
+    </tr>
+    <tr>
+      <td><span class="date">&nbsp;</span></td>
+      <td><span class="date gotoutfit">1</span></td>
+      <td><span class="date gotoutfit">2</span></td>
+      <td><span class="date">3</span></td>
+      <td><span class="date">4</span></td>
+      <td><span class="date gotoutfit">5</span></td>
+      <td><span class="date gotoutfit">6</span></td>
+    </tr>
+    <tr>
+      <td><span class="date">7</span></td>
+      <td><span class="date gotoutfit">8</span></td>
+      <td><span class="date gotoutfit">9</span></td>
+      <td><span class="date">10</span></td>
+      <td><span class="date gotoutfit">11</span></td>
+      <td><span class="date">12</span></td>
+      <td><span class="date">13</span></td>
+    </tr>
+    <tr>
+      <td><span class="date">14</span></td>
+      <td><span class="date gotoutfit">15</span></td>
+      <td><span class="date">16</span></td>
+      <td><span class="date">17</span></td>
+      <td><span class="date">18</span></td>
+      <td><span class="date">19</span></td>
+      <td><span class="date gotoutfit">20</span></td>
+    </tr>
+    <tr>
+      <td><span class="date gotoutfit">21</span></td>
+      <td><span class="date">22</span></td>
+      <td><span class="date">23</span></td>
+      <td><span class="date">24</span></td>
+      <td><span class="date gotoutfit">25</span></td>
+      <td><span class="date">26</span></td>
+      <td><span class="date">27</span></td>
+    </tr>
+    <tr>
+      <td><span class="date">28</span></td>
+      <td><span class="date">29</span></td>
+      <td><span class="date">30</span></td>
+      <td><span class="date">31</span></td>
+      <td><span class="date">&nbsp;</span></td>
+      <td><span class="date">&nbsp;</span></td>
+      <td><span class="date">&nbsp;</span></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <p>
+  <div class="title">June 2017</div>  
+    <table data-month="2017-06-" border="1">
+      <tr>
+        <th>Sun</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+      </tr>
+      <tr>
+        <td><span class="date">&nbsp;</span></td>
+        <td><span class="date">&nbsp;</span></td>
+        <td><span class="date">&nbsp;</span></td>
+        <td><span class="date">&nbsp;</span></td>
+        <td><span class="date">1</span></td>
+        <td><span class="date">2</span></td>
+        <td><span class="date">3</span></td>
+      </tr>
+      <tr>
+        <td><span class="date">4</span></td>
+        <td><span class="date">5</span></td>
+        <td><span class="date">6</span></td>
+        <td><span class="date">7</span></td>
+        <td><span class="date">8</span></td>
+        <td><span class="date">9</span></td>
+        <td><span class="date">10</span></td>
+      </tr>
+      <tr>
+        <td><span class="date">11</span></td>
+        <td><span class="date">12</span></td>
+        <td><span class="date">13</span></td>
+        <td><span class="date">14</span></td>
+        <td><span class="date">15</span></td>
+        <td><span class="date">16</span></td>
+        <td><span class="date">17</span></td>
+      </tr>
+      <tr>
+        <td><span class="date">18</span></td>
+        <td><span class="date">19</span></td>
+        <td><span class="date">20</span></td>
+        <td><span class="date">21</span></td>
+        <td><span class="date">22</span></td>
+        <td><span class="date">23</span></td>
+        <td><span class="date">24</span></td>
+      </tr>
+      <tr>
+        <td><span class="date">25</span></td>
+        <td><span class="date">26</span></td>
+        <td><span class="date">27</span></td>
+        <td><span class="date">28</span></td>
+        <td><span class="date">29</span></td>
+        <td><span class="date">30</span></td>
+        <td><span class="date">&nbsp;</span></td>
+      </tr>
+    </table>
+<br>
+<br>
+
+
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script>
+
+    function showPastOutfit(results) {
+      console.log(results);
+      if (results !== "no past outfit"){
+        var res = results.split(" ");
+        $(".pastoutfittop").append("<img class='top' src='"+res[1]+"'>")
+        $(".pastoutfitbottom").append("<img class='bottom' src='"+res[0]+"'>")
+        $(".top").css("width", "100px").css("height", "100px").css("position", "absolute");
+        $(".bottom").css("width", "100px").css("height", "150px").css("position", "absolute").css('margin-top', '100px');
+      } 
+
+    }
+
+    $('.date').hover(
+      function() {
+
+        $(".pastoutfittop").empty();
+        $(".pastoutfitbottom").empty();
+        var date = { date: $(this).closest("table").attr('data-month') + $(this).text()}
+
+        $.get(/get_past_outfit/, date, showPastOutfit)
+
+        // $( this ).append( $( "<div> "+$(this).closest("table").attr('data-month') + $(this).text()+" </div>" ) );
+      }, function() {
+        $( this ).find( "div:last" ).remove();
+      }
+    );
+
+
+</script>
+
+<!-- <body style="text-align:center"> -->
+
+</body>
+</html>
+
+{% endblock %}

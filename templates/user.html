@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="main">
+  <body class="closetbackground" background="/static/img/lego3.png"> 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+  .myTops {display:none;}
+  .myBottoms {display:none;}
+  </style>
+  <body>
+
+</div>
+<div class="w3-content w3-section" style="max-width:200px">
+  <img class="myTops w3-animate-right" src="/static/img/stripe.png" style="width:100%">
+  <img class="myTops w3-animate-left" src="/static/img/sportgrey.png" style="width:100%">
+</div>
+
+<div class="w3-content w3-section" style="max-width:200px">
+  <img class="myBottoms w3-animate-left" src="/static/img/jeans.png" style="width:100%">
+  <img class="myBottoms w3-animate-right" src="/static/img/black.png" style="width:100%">
+  <img class="myBottoms w3-animate-left" src="/static/img/skirt.png" style="width:100%">
+</div>
+
+<script>
+var myIndex = 0;
+carousel1();
+
+function carousel1() {
+    var i;
+    var x = document.getElementsByClassName("myTops");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel1, 4000);    
+}
+</script>
+
+<script>
+var myIndexes = 0;
+carousel2();
+
+function carousel2() {
+    var e;
+    var f = document.getElementsByClassName("myBottoms");
+    for (e = 0; e < f.length; e++) {
+      f[e].style.display = "none";  
+    }
+    myIndexes++;
+    if (myIndexes > f.length) {myIndexes = 1}    
+    f[myIndexes-1].style.display = "block";  
+    setTimeout(carousel2, 4000);    
+}
+</script>
+
+
+
+{% endblock %}

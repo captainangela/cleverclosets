@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<title>CLOTHETS</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="icon" href="static/img/unnamed.png">
+    <link rel="stylesheet" type="text/css" href="static/css/prettyify.css">
+<style>
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+</style>
+</head>
+
+<body class="homepagebackground" background="https://longislandweekly.com/wp-content/uploads/2015/07/ClosetOrganization-A_ASAHouseandHome.jpg"> 
+
+
+<h1 class='retroshadow'>Welcome to your closet.</h1>
+
+<body style="text-align:center">
+<div class="transparent-box"">
+    <div class="popup-box">
+      <button class="btn" class="popup" onclick="myFunction()">Login</button>
+      <div class="popuptext" id="loginPopup">
+        <form action="/login" method="POST">
+            <div>
+                <label>Username:
+                    <input type="text" name="username" required>
+                </label>
+            </div>
+            <div>
+                <label>Password:
+                    <input type="password" name="password" required>
+                </label>
+            </div>
+            <div>
+                <input type="submit" value="Log In">
+            </div>
+        </form>
+      </div>
+    </div>
+    <div>
+    <h3>Not yet a user? Register <a href="/register">here</a>.</h3>
+    </div>
+</div>
+
+<script>
+
+// When the user clicks on div, open the popup
+function myFunction() {
+    var popup = document.getElementById("loginPopup");
+    popup.classList.toggle("show");
+}
+</script>
+
+
+</body>
+</html>
+<div class="footer">
+<img src="static/img/unnamed.png" style="width:70px;height:70px">
+
+</div>
+</html>
